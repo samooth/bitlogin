@@ -1,3 +1,4 @@
+
 bitlogin.fn.moneybutton = (el, timespace, success) => {
   switch(idioma){
     default:case "en": msg1="Slide to LogIn!"; msg2="Free access";break
@@ -21,10 +22,17 @@ bitlogin.fn.moneybutton = (el, timespace, success) => {
       success(user)
     }
   })
-    console.log("e")
+  window.onmessage=function(e) {
+    if (e.data.v1.topic==="create-account:canceled"){
+      activaBtns();
+    }
+    return false;
+  }
 }
 
 bitlogin.fn.moneybuttonListen= ()=>{
+  let  loader = document.getElementById('loader');
+
             document.getElementById("moneybutton").addEventListener("click", (event) => {
             loader.setAttribute("data-text","Loading MoneyButton")
 

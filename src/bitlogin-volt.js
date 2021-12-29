@@ -38,6 +38,7 @@ bitlogin.fn.volt = async (el, timespace, exito, fail) => {
 }
 
 bitlogin.fn.voltListen= ()=>{
+      let loader = document.getElementById('loader');
 
           document.getElementById("voltid").addEventListener("click",(event) => {
             loader.setAttribute("data-text","Connecting with Volt.id")

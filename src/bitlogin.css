@@ -1,0 +1,42 @@
+.logbtn{
+	display: block;
+	width: 330px;
+	height: 90px;
+	padding: 10px 10px;
+	border-radius: 10px;
+	background: white;
+	margin: 10px 10px;
+	font-size: 1.2em;
+	box-shadow: gray 2px 2px 5px;
+	cursor: pointer;
+}
+.logbtn:hover{
+	box-shadow: black 3px 4px 8px;
+}
+.logbtn>img:hover{
+	margin-bottom: 12px;
+}
+.logbtn:hover{
+	background: snow;
+}
+#login{
+	font-size: 1.3em;
+	line-height: 1.5em;
+	height: 300px;
+	z-index: 3000;
+	padding: 40px 40px;
+	border-radius: 10px;
+	display: none;
+}
+#logout{
+	width: 330px;
+	padding: 10px 10px;
+	border-radius: 10px;
+	background: white;
+	margin: 10px 10px;
+	font-size: 1.2em;
+}
+.hidden{
+	display: none;
+}
+

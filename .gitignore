@@ -1,0 +1,7 @@
+.parcel*
+node_modules
+.env
+.env.local
+.env.development**
+.env.production**
+package-lock.json

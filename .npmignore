@@ -1,5 +1,6 @@
-.parcel*
+.parcel-cache*
 .env**
 dist/**
 demo
 node_modules/*
+installTest

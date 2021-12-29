@@ -7,8 +7,13 @@
 	<title>Test Bitlogin</title>
 
     <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
-    <script type="module">
-    	const Buffer = require("bsv").deps.Buffer;
+
+	<link rel="stylesheet" type="text/css" href="../src/bitlogin.css"> 
+
+	<link rel="stylesheet" type="text/css" href="../src/loader-double.css"> 
+
+	<script type="module">
+		const Buffer = require("bsv").deps.Buffer;
     	const Bsm = require("bsv").Bsm;
     	const Ecies = require("bsv").Ecies;
     	const Address = require("bsv").Address;
@@ -20,10 +25,15 @@
     	window.PubKey=PubKey;
 		window.userLang = navigator.language || navigator.userLanguage; 
 		window.idioma = userLang[0]+userLang[1];
-    </script>
 
-	<link rel="stylesheet" type="text/css" href="../node_modules/pure-css-loader/dist/loader-double.css"> 
+		require('dotenv').config();
+		window.APPURL = process.env.APPURL;
+		window.dominio = process.env.DOMINIO;
+		window.HC_APPID = process.env.HC_APPID;
+		window.DOT_APPID = process.env.DOT_APPID;
+	  let loader = document.getElementById('loader');
 
+	</script>
 	<script type="application/javascript" src="../src/bitlogin.js"></script>
 
 	<script type="application/javascript" src="../src/bitlogin-moneybutton.js"></script>
@@ -34,20 +44,15 @@
 	<script type="application/javascript" src="../src/bitlogin-dotwallet.js"></script>
 
 	<script type="module">
-		require('dotenv').config();
-		window.dominio = process.env.DOMINIO;
-		window.HC_APPID = process.env.HC_APPID;
-		window.DOT_APPID = process.env.DOT_APPID;
-	</script>
-	<script type="text/javascript">
 
-
-
-
+	
+	const isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	
 
 	document.addEventListener("DOMContentLoaded", () => {
+	   loader.className="loader";
+
 	  let user = bitlogin.user();
-	  let loader = document.getElementById('loader');
 
 	  if (user) {
 	  	desactivaBtns();
@@ -62,12 +67,8 @@
 	  	console.log("No ha iniciado sesion")
 
 		entorno="local";
-		bitloginMenu("#loginMenu");
-	    bitlogin.fn.moneybuttonListen();
-	    bitlogin.fn.handcashListen();
-	    bitlogin.fn.voltListen();
-	    bitlogin.fn.sensiletListen();
-	    bitlogin.fn.relayListen();
+		bitloginMenu("#loginMenu", isMobile);
+
 
   	}
 	  
@@ -122,13 +123,12 @@
 
 
 </style>
-<div id="loginMenu">
-</div>
+
+<div id="loginMenu"></div>
+<div id="loader" class="loader loader-double is-active" data-text></div>
 
 
-
-<div id='login'><div id="loader" class="loader" data-text></div>
-</div>
+<div id='login'></div>
 <button id='logout' class='hidden'>logout</button>
 <div id='paymail'></div>
 <div id='pubkey'></div>

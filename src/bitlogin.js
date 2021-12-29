@@ -1,3 +1,4 @@
+
 const loadScript = src => {
     let s1;
     switch(src){
@@ -105,13 +106,81 @@ bitlogin.user = () => {
   return JSON.parse(u)
 }
 
-const bitloginMenu = (selector="") => {
-  let el = document.querySelector(selector)
 
-  el.innerHTML=`<button id="relayx" class="logbtn"><img src="img/relay.png" width="130px" alt="RelayX"></button>
-  <button id="moneybutton" class="logbtn"><img src="img/moneybutton.png" width="150px" alt="MoneyButton"></button>
-  <button id="handcash" class="logbtn"><img src="img/handcash.png" width="180px" alt="Handcash"></button>
-  <button id="voltid" class="logbtn"><img src="img/volt.png" width="180px" alt="Volt"></button>
-  <button id="sensilet" class="logbtn"><img src="img/sensilet.png" width="130px" alt="Sensilet"></button>
-  <button id="dotwallet" class="logbtn"><img src="img/dotwallet.png" width="130px" alt="DotWallet"></button>`;
+const bitloginMenu = (selector="", isMobile=false) => {
+ 
+ let el = document.querySelector(selector)
+ 
+  let rx = document.createElement("button")
+  rx.className="logbtn"
+  rx.id="relayx";
+  let rx_img = document.createElement("img")
+  rx_img.alt="RelayX";
+  rx_img.src="./img/relay.png"
+  rx_img.style.width="150px";
+  rx.appendChild(rx_img);
+  el.appendChild( rx );
+  bitlogin.fn.relayListen();
+
+
+
+ let mb = document.createElement("button")
+ mb.className="logbtn"
+ mb.id="moneybutton";
+ let mb_img = document.createElement("img")
+ mb_img.alt="MoneyButton";
+ mb_img.src="./img/moneybutton.png"
+ mb_img.style.width="150px";
+ mb.appendChild(mb_img);
+ el.appendChild( mb );
+  bitlogin.fn.moneybuttonListen();
+
+ let hc = document.createElement("button")
+ hc.className="logbtn"
+ hc.id="handcash";
+ let hc_img = document.createElement("img")
+ hc_img.alt="HandCash";
+ hc_img.src="./img/handcash.png"
+ hc_img.style.width="170px";
+ hc.appendChild(hc_img);
+ el.appendChild( hc );
+ bitlogin.fn.handcashListen();
+
+  let dot = document.createElement("button")
+  dot.className="logbtn"
+  dot.id="dotwallet";
+  let dot_img = document.createElement("img")
+  dot_img.alt="DotWallet";
+  dot_img.src="./img/dotwallet.png"
+  dot_img.style.width="150px";
+  dot.appendChild(dot_img);
+  el.appendChild( dot );
+  bitlogin.fn.dotwalletListen();
+
+  if (!isMobile){
+    let volt = document.createElement("button")
+    volt.className="logbtn"
+    volt.id="voltid";
+    let volt_img = document.createElement("img")
+    volt_img.alt="Volt.Id";
+    volt_img.src="./img/volt.png"
+    volt_img.style.width="150px";
+    volt.appendChild(volt_img);
+    el.appendChild( volt );
+    bitlogin.fn.voltListen();
+
+    let sens = document.createElement("button")
+    sens.className="logbtn"
+    sens.id="sensilet";
+    let sens_img = document.createElement("img")
+    sens_img.alt="Sensilet";
+    sens_img.src="./img/sensilet.png"
+    sens_img.style.width="150px";
+    sens.appendChild(sens_img);
+    el.appendChild( sens );
+    bitlogin.fn.sensiletListen();
+
+  }
+
+
 }

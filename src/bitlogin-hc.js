@@ -43,6 +43,7 @@ bitlogin.fn.handcash = async (el, timespace, success) => {
 }
 
 bitlogin.fn.handcashListen = () => {
+      let loader = document.getElementById('loader');
 
           const paramToken = new URL(location.href).searchParams.get('authToken');
           if ( paramToken !== null ){

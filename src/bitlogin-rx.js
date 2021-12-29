@@ -1,6 +1,12 @@
 bitlogin.fn.relayone = async (el, timespace, success, fail) => {
       let RELAYSIGNPREFIX="1RELAYTEST";
-
+      window.onmessage=function(e) {
+        console.log(e)
+        if (e.data.call==="reply"){
+          loader.className="loader loader-double";
+        }
+        return false;
+      }
       try{
        const token = await relayone.authBeta();
         const [payload, signature] = token.split(".");

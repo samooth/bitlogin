@@ -1,7 +1,6 @@
 bitlogin.fn.dotwallet = async (el, timespace, success, fail) => {
     const CLIENT_ID = DOT_APPID;
     const BACKEND_SERVER= dominio;
-    const APP_URL = appurl;
     const DOTWALLET_API = `https://api.ddpurse.com`; // https://staging.api.ddpurse.com //note: no /v1/
     const DOTWALLET_CLIENT = 'https://ddpurse.com'; // https://prerelease.ddpurse.com
 
@@ -25,7 +24,7 @@ bitlogin.fn.dotwallet = async (el, timespace, success, fail) => {
 
     if (!state && !code ){
         const scope = encodeURIComponent('user.info autopay.bsv autopay.btc autopay.eth');
-        const redirectURI = encodeURIComponent(`${APP_URL}/`);
+        const redirectURI = encodeURIComponent(`${APPURL}/`);
         const loginState = uuidv4();
         localStorage.setItem('loginState', loginState);
 
@@ -40,6 +39,7 @@ bitlogin.fn.dotwallet = async (el, timespace, success, fail) => {
 
 
 bitlogin.fn.dotwalletListen= ()=>{
+    let loader = document.getElementById('loader');
 
     document.getElementById("dotwallet").addEventListener("click",(event) => {
       loader.className="loader loader-double is-active";
