@@ -1,0 +1,17 @@
+{
+  "name": "bitlogin",
+  "version": "0.2.1",
+  "description": "Bitlogin, access apps with Bitcoin",
+  "main": "index.js",
+  "scripts": {
+    "test": "rm dist/*.* && NODE_ENV=development & parcel test/test.html img/** --port 3000",
+    "test2": "rm dist/*.* && NODE_ENV=development & parcel test/test2.html img/** --port 3000"
+  },
+  "author": "Tomas Diaz",
+  "license": "ISC",
+  "dependencies": {
+    "bsv": "^2.0.10",
+    "dotenv": "^10.0.0",
+    "pure-css-loader": "^3.3.3"
+  }
+}
