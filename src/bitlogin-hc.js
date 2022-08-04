@@ -1,6 +1,7 @@
+
 bitlogin.fn.handcash = async (el, timespace, success) => {
     let elToken=localStorage.getItem("authToken");
-    const handCashConnect = new sdk.HandCashConnect(HC_APPID);
+    const handCashConnect = new hcsdk.HandCashConnect(HC_APPID);
   
     if (elToken===null ){
       const redirectionLoginUrl = handCashConnect.getRedirectionUrl();
@@ -12,6 +13,7 @@ bitlogin.fn.handcash = async (el, timespace, success) => {
             const cuenta = handCashConnect.getAccountFromAuthToken(elToken);
             const perfil = await cuenta.profile.getCurrentProfile();
             const message = Buffer.from(timespace).toString('hex')
+            
             const { publicKey, signature } = await cuenta.profile.signData({
                 value: message,
                 format: 'hex'

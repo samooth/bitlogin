@@ -1,3 +1,4 @@
+
 bitlogin.fn.relayone = async (el, timespace, success, fail) => {
       let RELAYSIGNPREFIX="1RELAYTEST";
       window.onmessage=function(e) {
@@ -11,7 +12,7 @@ bitlogin.fn.relayone = async (el, timespace, success, fail) => {
        const token = await relayone.authBeta();
         const [payload, signature] = token.split(".");
         const data = JSON.parse(atob(payload));
-        console.log(window.entorno)
+    
         if (entorno === 'local') {
             timespace=RELAYSIGNPREFIX+timespace;
         }else{

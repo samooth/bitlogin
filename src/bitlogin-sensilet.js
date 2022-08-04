@@ -1,3 +1,4 @@
+
 bitlogin.fn.sensilet = async (el, timespace, success, fail) => {
     if (typeof(window.sensilet.requestAccount)==="function"){
      try{
@@ -66,3 +67,4 @@ bitlogin.fn.sensiletListen=()=>{
 
           }, false);
 }
+
