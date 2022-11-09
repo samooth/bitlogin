@@ -9,7 +9,7 @@ Serverless login with bitcoin
 Stores login info on localStorage
 
 ```
-$bit("#login").login("moneybutton", (e) => {
+bitlogin("#login").login("moneybutton", (e) => {
   window.location.href = // redirect url
 })
 ```
@@ -19,7 +19,7 @@ $bit("#login").login("moneybutton", (e) => {
 You can also additionally store login info as cookie
 
 ```
-$bit("#login").login("moneybutton", { cookie: true }, (e) => {
+bitlogin("#login").login("moneybutton", { cookie: true }, (e) => {
   window.location.href = // redirect url
 })
 ```
@@ -28,7 +28,7 @@ $bit("#login").login("moneybutton", { cookie: true }, (e) => {
 
 
 ```
-let current_user = $bit.user()
+let current_user = bitlogin.user()
 ```
 
 ## 3. Logout
@@ -36,7 +36,7 @@ let current_user = $bit.user()
 Attach logout event handler to any element
 
 ```
-$bit("#logout").logout((e) => {
+bitlogin("#logout").logout((e) => {
   window.location.href = // redirect url
 })
 ```
