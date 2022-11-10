@@ -1,4 +1,5 @@
-const {bitlogin }= require("./bitlogin")
+const {bitlogin, desactivaBtns, activaBtns, loadScript }= require("./bitlogin")
+const uuidv4 = require("uuid").v4
 bitlogin.fn.dotwallet = async (el, timespace, success, fail) => {
     const CLIENT_ID = DOT_APPID;
     const BACKEND_SERVER= dominio;

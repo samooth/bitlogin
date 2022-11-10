@@ -1,4 +1,4 @@
-const {bitlogin }= require("./bitlogin")
+const {bitlogin, desactivaBtns, activaBtns, loadScript }= require("./bitlogin")
 
 bitlogin.fn.handcash = async (el, timespace, success) => {
     let elToken=localStorage.getItem("authToken");

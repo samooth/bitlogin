@@ -1,3 +1,5 @@
+const Buffer = require("buffer")
+
 const { loadScript, bitloginMenu,desactivaBtns, activaBtns, muestraLogOut, bitlogin, deviceKeys } = require('./bitlogin.js')
 require('./bitlogin-hc.js')
 require('./bitlogin-mb.js')

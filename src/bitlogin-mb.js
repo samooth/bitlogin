@@ -1,4 +1,5 @@
-const {bitlogin }= require("./bitlogin")
+const {bitlogin, desactivaBtns, activaBtns, loadScript}= require("./bitlogin")
+
 
 bitlogin.fn.moneybutton = (el, timespace, success) => {
   switch(idioma){

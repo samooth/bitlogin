@@ -1,4 +1,4 @@
-const {bitlogin }= require("./bitlogin")
+const {bitlogin, desactivaBtns, activaBtns, loadScript }= require("./bitlogin")
 
 bitlogin.fn.volt = async (el, timespace, exito, fail) => {
     try{

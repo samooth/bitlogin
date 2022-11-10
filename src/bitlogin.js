@@ -1,3 +1,5 @@
+const { PrivKey } = require("bsv")
+
 const loadScript = src => {
     let s1;
     switch (src) {
@@ -55,9 +57,9 @@ const deviceKeys=()=>{
   let devKey = localStorage.getItem("deviceKey");
   let myPrivKey;
 
-  if (!PrivK) {
+  if (typeof PrivK==="undefined") {
       myPrivKey = PrivKey.fromRandom();
-      localStorage.setItem("deviceKey", bsv.PrivKey.fromRandom());
+      localStorage.setItem("deviceKey", PrivKey.fromRandom());
   } else {
       myPrivKey = PrivKey.fromString(PrivK);
 
@@ -70,6 +72,7 @@ const deviceKeys=()=>{
 
 const bitlogin = (selector) => {
     let el = document.querySelector(selector)
+    let network = "test" // or main
     return {
         login: (...args) => {
             let dkeys = deviceKeys()
@@ -215,4 +218,4 @@ const bitloginMenu = (selector = "", isMobile = false) => {
 
 }
 
-module.exports={ bitlogin, bitloginMenu, deviceKeys, activaBtns, desactivaBtns}
+module.exports={ bitlogin, bitloginMenu, deviceKeys, activaBtns, desactivaBtns, muestraLogOut, loadScript}

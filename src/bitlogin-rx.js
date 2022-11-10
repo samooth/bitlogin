@@ -1,4 +1,7 @@
-const {bitlogin }= require("./bitlogin")
+
+const {bitlogin, desactivaBtns, activaBtns, muestraLogOut, loadScript }= require("./bitlogin")
+const Buffer = require("bsv").deps.Buffer
+const { Bsm, Address } = require("bsv")
 
 bitlogin.fn.relayone = async (el, timespace, success, fail) => {
       let RELAYSIGNPREFIX="1RELAYTEST";

@@ -1,4 +1,8 @@
-const {bitlogin }= require("./bitlogin")
+
+const { Bsm, Address, Ecdsa } = require("bsv")
+const {bitlogin, desactivaBtns, activaBtns, muestraLogOut, loadScript }= require("./bitlogin")
+
+const Buffer = require("bsv").deps.Buffer
 
 bitlogin.fn.sensilet = async (el, timespace, success, fail) => {
     if (typeof(window.sensilet.requestAccount)==="function"){
@@ -7,23 +11,31 @@ bitlogin.fn.sensilet = async (el, timespace, success, fail) => {
       const sensi = window.sensilet;
       const address = await sensi.requestAccount();
       const accountInfo = await sensi.getAccount();
-      console.log(sensi);
-      console.log(accountInfo)
-      const firma = await sensi.signMsg({ msg: timespace });
-      console.log(firma)
+      console.log("account info",accountInfo)
+      const firma = await sensi.signMessage(timespace);
         // Verifica la firma
-         const ecdsa = new Ecdsa()
-        ecdsa.hashBuf = Bsm.magicHash(Buffer.from(timespace,'utf8'))
-        ecdsa.sig = Buffer.from(firma.sig,"base64")
-        let publica = ecdsa.sig2PubKey()
-        console.log(publica)
+        //const ecdsa = new Ecdsa( Buffer.from(timespace,'utf8'),  Buffer.from(firma.sig,"base64"))
+        //console.log(ecdsa.verify())
+        //ecdsa.hashBuf = Bsm.magicHash(Buffer.from(timespace,'utf8'))
+        //ecdsa.sig = Buffer.from(firma.sig,"base64")
+        //let publica = ecdsa.sig2PubKey()
+        // console.log(publica)
+        console.log(timespace, firma)
+        let direccion = ""
+        if (bitlogin.network==="test"){ 
+          direccion = Address.Testnet.fromString(address) 
+        }else{
+          direccion = Address.fromString(address)
+        }
+        let msgBuf =Buffer.from(timespace,'utf8')
 
-        let verifica = Bsm.verify( Buffer.from(timespace,'utf8'), firma.sig,  Address.fromString(firma.address))
+        let verifica = Bsm.verify( msgBuf, firma, direccion )
 
         if (!verifica){
-          throw Error();
+          console.log("firma no valia")
+          throw Error("firma no valida");
         }
-        let user = { wallet:'sensilet', paymail: firma.address, address: firma.address, timespace: timespace, sig: firma.sig }
+        let user = { wallet:'sensilet', paymail: "", address: address, timespace: timespace, sig: firma }
 
         success(user);
      }catch(e){
