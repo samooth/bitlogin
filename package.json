@@ -1,6 +1,6 @@
 {
   "name": "bitlogin",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Bitlogin, access apps with Bitcoin",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "target": "src/index.js",
