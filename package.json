@@ -5,7 +5,7 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "target": "src/index.js",
   "scripts": {
-    "build": "browserify src/index.js -s bitlogin > dist/index.js"
+    "build": "browserify src/index.js --standalone bitlogin > dist/index.js"
   },
   "author": "samooth",
   "license": "ISC",

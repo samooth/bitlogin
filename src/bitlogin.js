@@ -173,6 +173,7 @@ const bitloginMenu = (selector = "", isMobile = false) => {
     hc_img.style.width = "170px";
     hc.appendChild(hc_img);
     el.appendChild(hc);
+
     bitlogin.fn.handcashListen();
 
     let dot = document.createElement("button")
@@ -213,3 +214,5 @@ const bitloginMenu = (selector = "", isMobile = false) => {
 
 
 }
+
+module.exports={ bitlogin, bitloginMenu, deviceKeys, activaBtns, desactivaBtns}

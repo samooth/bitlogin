@@ -1,3 +1,4 @@
+const {bitlogin }= require("./bitlogin")
 bitlogin.fn.dotwallet = async (el, timespace, success, fail) => {
     const CLIENT_ID = DOT_APPID;
     const BACKEND_SERVER= dominio;
@@ -61,3 +62,5 @@ bitlogin.fn.dotwalletListen= ()=>{
 
     })
 }
+
+module.exports={bitlogin}

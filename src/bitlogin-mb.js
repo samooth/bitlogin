@@ -1,3 +1,4 @@
+const {bitlogin }= require("./bitlogin")
 
 bitlogin.fn.moneybutton = (el, timespace, success) => {
   switch(idioma){
@@ -54,3 +55,4 @@ bitlogin.fn.moneybuttonListen= ()=>{
           }, false);
 
 }
+module.exports={bitlogin}

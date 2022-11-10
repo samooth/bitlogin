@@ -1,9 +1,10 @@
-require('./bitlogin')
-require('./bitlogin-hc')
-require('./bitlogin-mb')
-require('./bitlogin-rx')
-require('./bitlogin-dot')
-require('./bitlogin-sensilet')
+const { loadScript, bitloginMenu,desactivaBtns, activaBtns, muestraLogOut, bitlogin, deviceKeys } = require('./bitlogin.js')
+require('./bitlogin-hc.js')
+require('./bitlogin-mb.js')
+require('./bitlogin-rx.js')
+require('./bitlogin-dot.js')
+require('./bitlogin-sensilet.js')
+require('./bitlogin-volt.js')
 
 module.exports={
     loadScript,
@@ -12,5 +13,5 @@ module.exports={
     activaBtns,
     desactivaBtns,
     deviceKeys
-  }
+}
 

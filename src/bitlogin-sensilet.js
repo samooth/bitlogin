@@ -1,3 +1,4 @@
+const {bitlogin }= require("./bitlogin")
 
 bitlogin.fn.sensilet = async (el, timespace, success, fail) => {
     if (typeof(window.sensilet.requestAccount)==="function"){
@@ -68,3 +69,4 @@ bitlogin.fn.sensiletListen=()=>{
           }, false);
 }
 
+module.exports={bitlogin}

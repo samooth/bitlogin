@@ -1,3 +1,4 @@
+const {bitlogin }= require("./bitlogin")
 
 bitlogin.fn.volt = async (el, timespace, exito, fail) => {
     try{
@@ -64,3 +65,5 @@ bitlogin.fn.voltListen= ()=>{
           }, false);
 
 }
+
+module.exports={bitlogin}

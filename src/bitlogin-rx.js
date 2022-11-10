@@ -1,3 +1,4 @@
+const {bitlogin }= require("./bitlogin")
 
 bitlogin.fn.relayone = async (el, timespace, success, fail) => {
       let RELAYSIGNPREFIX="1RELAYTEST";
@@ -73,3 +74,5 @@ bitlogin.fn.relayListen= ()=>{
   }, false);
 
 }
+
+module.exports={bitlogin}

@@ -1,3 +1,4 @@
+const {bitlogin }= require("./bitlogin")
 
 bitlogin.fn.handcash = async (el, timespace, success) => {
     let elToken=localStorage.getItem("authToken");
@@ -92,3 +93,5 @@ bitlogin.fn.handcashListen = () => {
 
           });
 }
+
+module.exports={bitlogin}
