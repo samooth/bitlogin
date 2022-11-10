@@ -1,6 +1,6 @@
-//const { Address, KeyPair,PrivKey, PubKey, Ecdsa, Bsm } = require("bsv")
 
 const deviceKeys=()=>{
+
   //Generate or Get device key stored on device
   let devKey = localStorage.getItem("deviceKey");
   let myPrivKey;
@@ -490,7 +490,7 @@ bitlogin.fn.handcash = async (el, timespace, success) => {
             let direccion = Address.fromPubKey( PubKey.fromString( publicKey ));
             let verifica = Bsm.verify( Buffer.from(timespace,'utf8'), signature, direccion)
             if (!verifica){
-              throw Error();
+              throw Error("firma invalida");
             }
 
           // verificar que la clave publica del paymail
@@ -501,7 +501,7 @@ bitlogin.fn.handcash = async (el, timespace, success) => {
 
 
         }catch(e){
-          console.log(e)
+          console.log(e.message)
           if(e.message==="Missing authorization"){
                   const redirectionLoginUrl = handCashConnect.getRedirectionUrl();
                   window.location.replace(redirectionLoginUrl);
@@ -562,6 +562,7 @@ bitlogin.fn.handcashListen = () => {
 }
 
 bitlogin.fn.dotwallet = async (el, timespace, success, fail) => {
+  console.log("dotWallet iniciando sesion")
     const CLIENT_ID = DOT_APPID;
     const BACKEND_SERVER= dominio;
     const DOTWALLET_API = `https://api.ddpurse.com`; // https://staging.api.ddpurse.com //note: no /v1/
@@ -572,9 +573,39 @@ bitlogin.fn.dotwallet = async (el, timespace, success, fail) => {
     const code = urlParams.get('code');
     const savedState = localStorage.getItem('loginState');
 
+    if (!state && !code ){
+        const scope = encodeURIComponent('user.info autopay.bsv autopay.btc autopay.eth');
+        const redirectURI = encodeURIComponent(`${APPURL}/`);
+        const loginState = uuidv4();
+        localStorage.setItem('loginState', loginState);
+
+        const loginURL = `${DOTWALLET_API}/authorize?client_id=${CLIENT_ID}&redirect_uri=${redirectURI}&response_type=code&state=${loginState}&scope=${scope}`;
+        window.location.replace(loginURL);     
+    }
+
+ 
+  
+}
+
+
+
+bitlogin.fn.dotwalletListen= ()=>{
+  console.log("dot listen")
+    const CLIENT_ID = DOT_APPID;
+    const BACKEND_SERVER= dominio;
+    const DOTWALLET_API = `https://api.ddpurse.com`; // https://staging.api.ddpurse.com //note: no /v1/
+    const DOTWALLET_CLIENT = 'https://ddpurse.com'; // https://prerelease.ddpurse.com
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const state = urlParams.get('state');
+    const code = urlParams.get('code');
+    
+    const savedState = localStorage.getItem('loginState');
     if (state != savedState) {
-      fail("Error validando la solicitud")
+      console.log("Error validando la solicitud")
     } else {
+        console.log("iniciada sesion con DotWallet")
+
         // Enviar datos de acceso al backend
           /*fetch(`${BACKEND_SERVER}/auth`, {
             method: 'POST',
@@ -585,23 +616,8 @@ bitlogin.fn.dotwallet = async (el, timespace, success, fail) => {
           });*/
     }
 
-    if (!state && !code ){
-        const scope = encodeURIComponent('user.info autopay.bsv autopay.btc autopay.eth');
-        const redirectURI = encodeURIComponent(`${APPURL}/`);
-        const loginState = uuidv4();
-        localStorage.setItem('loginState', loginState);
-
-        const loginURL = `${DOTWALLET_API}/authorize?client_id=${CLIENT_ID}&redirect_uri=${redirectURI}&response_type=code&state=${loginState}&scope=${scope}`;
-        window.location.replace(loginURL);     
-    }
-      
-
-  
-}
 
 
-
-bitlogin.fn.dotwalletListen= ()=>{
     let loader = document.getElementById('loader');
 
     document.getElementById("dotwallet").addEventListener("click",(event) => {
@@ -621,11 +637,14 @@ bitlogin.fn.dotwalletListen= ()=>{
        }) 
 
     })
+
+
 }
 
 
 
 module.exports={
+    loadScript,
     bitlogin,
     bitloginMenu,
     activaBtns,

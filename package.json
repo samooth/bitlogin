@@ -1,17 +1,13 @@
 {
   "name": "bitlogin",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Bitlogin, access apps with Bitcoin",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "target": "src/index.js",
   "scripts": {
-    "test": "rm -rf dist/*.* && NODE_ENV=development parcel test/test.html img/** --port 3000",
-    "test2": "rm -rf dist/*.* && NODE_ENV=development parcel test/test2.html img/** --port 3000",
-    "build": "parcel build src/index.js",
-    "build2": "browserify src/index.js -s bitlogin > dist/index.js",
-    "update": "scp dist/index.js bsv.direct:/srv/www/bsv.direct/lib/bitlogin/index.js"
+    "build": "browserify src/index.js -s bitlogin > dist/index.js"
   },
-  "author": "Tomas Diaz",
+  "author": "samooth",
   "license": "ISC",
   "dependencies": {
     "bsv": "^2.0.10",
