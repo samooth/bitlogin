@@ -213,4 +213,3 @@ const bitloginMenu = (selector = "", isMobile = false) => {
 
 
 }
-module.exports=bitlogin
