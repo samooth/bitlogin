@@ -13,14 +13,6 @@ bitlogin.fn.sensilet = async (el, timespace, success, fail) => {
       const accountInfo = await sensi.getAccount();
       console.log("account info",accountInfo)
       const firma = await sensi.signMessage(timespace);
-        // Verifica la firma
-        //const ecdsa = new Ecdsa( Buffer.from(timespace,'utf8'),  Buffer.from(firma.sig,"base64"))
-        //console.log(ecdsa.verify())
-        //ecdsa.hashBuf = Bsm.magicHash(Buffer.from(timespace,'utf8'))
-        //ecdsa.sig = Buffer.from(firma.sig,"base64")
-        //let publica = ecdsa.sig2PubKey()
-        // console.log(publica)
-        console.log(timespace, firma)
         let direccion = ""
         if (bitlogin.network==="test"){ 
           direccion = Address.Testnet.fromString(address) 
@@ -46,16 +38,7 @@ bitlogin.fn.sensilet = async (el, timespace, success, fail) => {
       fail("No tiene Sensilet");
       window.open("https://sensilet.com/","_blank");
     }
-      /*
-      // if (data.origin !== "localhost") throw new Error();
- 
-      // check signature
-      //if (!verify(payload, data.identity, signature)) throw new Error();
 
-
-      // check that pki matches paymail
-      //if (!queryPaymailPKI(data.paymail, data.identity)) throw new Error();
-      */
 }
 bitlogin.fn.sensiletListen=()=>{
 
@@ -69,7 +52,6 @@ bitlogin.fn.sensiletListen=()=>{
 
                   window.location.replace(  "#/u/" + e.paymail )
                   muestraLogOut();
-                  console.log(bitlogin.user())
                   loader.className="loader loader-double";
 
                 }, function (e){

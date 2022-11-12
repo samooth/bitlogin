@@ -2,6 +2,7 @@ const {bitlogin, desactivaBtns, activaBtns, loadScript}= require("./bitlogin")
 
 
 bitlogin.fn.moneybutton = (el, timespace, success) => {
+  let msg1, msg2
   switch(idioma){
     default:case "en": msg1="Slide to LogIn!"; msg2="Free access";break
     case "es": msg1="Desliza para acceder!";msg2="Acceso gratuito";break

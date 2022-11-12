@@ -14,6 +14,7 @@ bitlogin.fn.dotwallet = async (el, timespace, success, fail) => {
     if (state != savedState) {
       fail("Error validando la solicitud")
     } else {
+      console.log("correct")
         // Enviar datos de acceso al backend
           /*fetch(`${BACKEND_SERVER}/auth`, {
             method: 'POST',
